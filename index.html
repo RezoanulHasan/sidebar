@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic Content Example</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Style for the left panel */
+    .left-panel {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 20%;
+      background-color: black;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    /* Style for the content area */
+    .content {
+      margin-left: 20%;
+      padding: 20px;
+    }
+
+    /* Style for the links in the left panel */
+    .left-panel a {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Hover effect for the links in the left panel */
+    .left-panel a:hover {
+      background-color: green;
+    }
+
+    /* Icon styles */
+    .left-panel a i {
+      margin-right: 10px;
+    }
+
+    /* Animation for showing/hiding content */
+    .fade-in {
+      animation: fadeIn 0.5s;
+    }
+
+    .fade-out {
+      animation: fadeOut 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+
+    /* Responsive styles */
+    @media screen and (max-width: 768px) {
+      .left-panel {
+        width: 100%;
+        height: auto;
+        position: static;
+      }
+
+      .content {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="left-panel">
+    <ul>
+      <li><a href="#" onclick="showContent('home')"><i class="fas fa-home"></i>-Home</a></li>
+      <li><a href="#" onclick="showContent('contact')"><i class="fas fa-address-book"></i>-Contact</a></li>
+      <li><a href="#" onclick="showContent('information')"><i class="fas fa-info-circle"></i>-Information</a></li>
+      <li><a href="#" onclick="showContent('guide')"><i class="fas fa-book"></i>-Guide</a></li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <div id="home" style="display: none;">
+      <h1>Home</h1>
+      <p>Welcome to the home page!</p>
+    </div>
+    <div id="contact" style="display: none;">
+      <h1>Contact</h1>
+      <p>Contact information goes here.</p>
+    </div>
+    <div id="information" style="display: none;">
+      <h1>Information</h1>
+      <p>Additional information is displayed here.</p>
+    </div>
+    <div id="guide" style="display: none;">
+      <h1>Guide</h1>
+      <p>Guidance and instructions are shown on this page.</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+  <script>
+    function showContent(component) {
+      // Hide all content divs
+      var contentDivs = document.getElementsByClassName('content')[0].children;
+      for (var i = 0; i < contentDivs.length; i++) {
+        contentDivs[i].classList.remove('fade-in');
+        contentDivs[i].classList.add('fade-out');
+        contentDivs[i].style.display = 'none';
+      }
+
+      // Show the selected component
+      var selectedComponent = document.getElementById(component);
+      selectedComponent.style.display = 'block';
+      selectedComponent.classList.remove('fade-out');
+      selectedComponent.classList.add('fade-in');
+    }
+  </script>
+</body>
+</html>
+
